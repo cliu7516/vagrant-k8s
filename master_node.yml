@@ -2,11 +2,20 @@
 - hosts: all
   tasks:
   - name: Initializing Kubernetes cluster
-    shell: sudo kubeadm init
+    shell: sudo kubeadm init --apiserver-advertise-address 192.168.50.100
     register: output
+
+  - name: Save k8s cluster token to local file
+    copy:
+      content: "{{ output.stdout }}"
+      dest: "tokenfile"
+    delegate_to: localhost
 
   - name: Copying required files
     shell: |
      mkdir -p $HOME/.kube
      sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
      sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+  - name: Install Network Add-on
+    command: kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml

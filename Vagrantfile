@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
       end
       node.vm.provision "ansible" do |ansible|
        ansible.verbose = "v"
-       ansible.playbook = "node.yml"
+       ansible.playbook = "config_worker.yml"
       end
     end
   end

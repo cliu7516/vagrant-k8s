@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+  - name: Copying token to worker nodes
+    copy: src=tokenfile dest=join_token
+
+  - name: Joining worker nodes with kubernetes master
+    shell: |
+     kubeadm reset -f
+     cat join_token | tail -2 > out.sh
+     sudo sh out.sh
