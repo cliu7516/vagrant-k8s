@@ -50,4 +50,24 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+
+  # config.vm.define "jumpbox" do |jumpbox|
+  #   jumpbox.vm.box = "chenhan/ubuntu-desktop-20.04"
+  #   jumpbox.vm.hostname = "jumpbox"
+  #   jumpbox.vm.base_mac = nil #Make sure nodes have different mac in order to install k8s
+  #   jumpbox.vm.provider "virtualbox" do |v|
+  #     v.name = "jumpbox"
+  #     v.memory = 8192
+  #     v.cpus=4
+  #   end
+  #   jumpbox.vm.network "private_network", ip: "192.168.50.30",
+  #     virtualbox__intnet: "mynetwork"
+  #     jumpbox.vm.provision "shell", inline: <<-SCRIPT
+  #     sudo echo "192.168.50.100  master-1" >> /etc/hosts
+  #   SCRIPT
+  #   jumpbox.vm.provision "ansible" do |ansible|
+  #     ansible.verbose = "v"
+  #     ansible.playbook = "jumpbox_node.yml"
+  #   end
+  # end
 end
