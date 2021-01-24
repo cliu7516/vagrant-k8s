@@ -44,3 +44,22 @@
         groups: docker
         append: yes
       become: yes
+
+    - name: Add Google official GPG key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+      become: yes
+
+    - name: Add Kubernetes Repository
+      apt_repository:
+        repo: deb http://apt.kubernetes.io/ kubernetes-xenial main 
+        state: present
+        filename: kuber
+      become: yes
+
+    - name: Install kubectl
+      apt:
+        name: kubectl
+        state: latest
+      become: yes

@@ -59,6 +59,7 @@ Vagrant.configure("2") do |config|
   #     v.name = "jumpbox"
   #     v.memory = 8192
   #     v.cpus=4
+  #     v.customize ["modifyvm", :id, "--vram", "128"]
   #   end
   #   jumpbox.vm.network "private_network", ip: "192.168.50.30",
   #     virtualbox__intnet: "mynetwork"
