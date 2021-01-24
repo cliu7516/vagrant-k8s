@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
   - name: Initializing Kubernetes cluster
-    shell: sudo kubeadm init --apiserver-advertise-address 192.168.50.100
+    shell: sudo kubeadm init --apiserver-advertise-address 192.168.50.100 --pod-network-cidr=10.244.0.0/16
     register: output
 
   - name: Save k8s cluster token to local file
